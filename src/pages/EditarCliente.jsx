@@ -1,9 +1,26 @@
-import { useNavigate, Form, useActionData, redirect } from "react-router-dom";
-import { Error } from "../components/Error";
+import {
+  Form,
+  useNavigate,
+  useLoaderData,
+  redirect,
+  useActionData,
+} from "react-router-dom";
 import { Formulario } from "../components/Formulario";
-import { obtenerClientes, agregarCliente } from "../data/clientes";
+import { actualizarCliente, obtenerCliente } from "../data/clientes";
+import { Error } from "../components/Error";
 
-export const action = async ({ request }) => {
+export const loader = async ({ params }) => {
+  const cliente = await obtenerCliente(params.id);
+  if (Object.keys(cliente).length === 0) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Cliente no encontrado",
+    });
+  }
+  return cliente;
+};
+
+export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const datos = Object.fromEntries(formData.entries());
   const email = formData.get("email");
@@ -26,22 +43,21 @@ export const action = async ({ request }) => {
     return errores;
   }
 
-  // Agregar el cliente
-  await agregarCliente(datos);
-
-  // Redireccionar
+  // Actualizar el cliente
+  actualizarCliente(params.id, datos);
   return redirect("/");
 };
 
-export const NuevoCliente = () => {
+export const EditarCliente = () => {
   const navigate = useNavigate();
+  const cliente = useLoaderData();
   const errores = useActionData();
 
   return (
     <>
-      <h1 className="font-black text-3xl text-blue-900">Nuevo cliente</h1>
+      <h1 className="font-black text-3xl text-blue-900">Editar cliente</h1>
       <p className="mt-3">
-        Llena todos los campos para registrar un nuevo cliente
+        A continuación, puedes editar los datos del cliente
       </p>
 
       <div className="flex justify-end">
@@ -62,10 +78,10 @@ export const NuevoCliente = () => {
           ))}
 
         <Form method="POST" noValidate>
-          <Formulario />
+          <Formulario cliente={cliente} />
           <input
             type="submit"
-            value="Registrar cliente"
+            value="Guardar cambios"
             className="mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white"
           />
         </Form>

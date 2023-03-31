@@ -11,8 +11,9 @@ export const Formulario = ({ cliente }) => {
           id="nombre"
           type="text"
           className="mt-2 block w-full p-3 bg-gray-50"
-          placeholder="Nombre del Cliente"
+          placeholder="Nombre del cliente"
           name="nombre"
+          defaultValue={cliente?.nombre}
         />
       </div>
       <div className="mb-4">
@@ -23,8 +24,9 @@ export const Formulario = ({ cliente }) => {
           id="empresa"
           type="text"
           className="mt-2 block w-full p-3 bg-gray-50"
-          placeholder="Empresa del Cliente"
+          placeholder="Empresa del cliente"
           name="empresa"
+          defaultValue={cliente?.empresa}
         />
       </div>
 
@@ -36,8 +38,9 @@ export const Formulario = ({ cliente }) => {
           id="email"
           type="email"
           className="mt-2 block w-full p-3 bg-gray-50"
-          placeholder="Email del Cliente"
+          placeholder="Email del cliente"
           name="email"
+          defaultValue={cliente?.email}
         />
       </div>
 
@@ -49,8 +52,9 @@ export const Formulario = ({ cliente }) => {
           id="telefono"
           type="tel"
           className="mt-2 block w-full p-3 bg-gray-50"
-          placeholder="Teléfono del Cliente"
+          placeholder="Teléfono del cliente"
           name="telefono"
+          defaultValue={cliente?.telefono}
         />
       </div>
 
@@ -63,8 +67,9 @@ export const Formulario = ({ cliente }) => {
           id="notas"
           type="text"
           className="mt-2 block w-full p-3 bg-gray-50 h-40 align-self"
-          placeholder="Notas del Cliente"
+          placeholder="Notas del cliente"
           name="notas"
+          defaultValue={cliente?.notas}
         />
       </div>
     </>
