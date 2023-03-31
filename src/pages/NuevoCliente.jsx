@@ -1,7 +1,7 @@
 import { useNavigate, Form, useActionData, redirect } from "react-router-dom";
 import { Error } from "../components/Error";
 import { Formulario } from "../components/Formulario";
-import { obtenerClientes, agregarCliente } from "../data/clientes";
+import { agregarCliente } from "../data/clientes";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -39,34 +39,28 @@ export const NuevoCliente = () => {
 
   return (
     <>
-      <h1 className="font-black text-3xl text-blue-900">Nuevo cliente</h1>
-      <p className="mt-3">
+      <h1 className="font-black text-2xl text-sky-900 uppercase">
+        Nuevo cliente
+      </h1>
+      <p>
         Llena todos los campos para registrar un nuevo cliente
       </p>
 
-      <div className="flex justify-end">
-        <button
-          onClick={() => navigate("/")}
-          className="bg-blue-800 text-white rounded-lg py-1 px-5 font-bold uppercase text-sm"
-        >
-          Volver
-        </button>
-      </div>
-
-      <div className="bg-white shadow rounded-md md:w-3/4 mx-auto p-5 mt-10">
-        {errores?.length &&
-          errores.map((error, i) => (
-            <Error key={i} className="mb-4">
-              {error}
-            </Error>
-          ))}
-
+      <div className="bg-white shadow rounded-md md:w-3/4 mx-auto p-5 mt-8">
         <Form method="POST" noValidate>
           <Formulario />
+
+          {errores?.length &&
+            errores.map((error, i) => (
+              <Error key={i} className="mb-1">
+                {error}
+              </Error>
+            ))}
+
           <input
             type="submit"
             value="Registrar cliente"
-            className="mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white"
+            className="mt-2 w-full bg-sky-800 p-3 uppercase font-bold text-white"
           />
         </Form>
       </div>

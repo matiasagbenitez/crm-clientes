@@ -3,8 +3,8 @@ import React from "react";
 export const Formulario = ({ cliente }) => {
   return (
     <>
-      <div className="mb-4">
-        <label className="text-gray-800" htmlFor="nombre">
+      <div className="mb-3 text-sm">
+        <label className="text-gray-800 font-semibold" htmlFor="nombre">
           Nombre:
         </label>
         <input
@@ -16,8 +16,8 @@ export const Formulario = ({ cliente }) => {
           defaultValue={cliente?.nombre}
         />
       </div>
-      <div className="mb-4">
-        <label className="text-gray-800" htmlFor="empresa">
+      <div className="mb-3 text-sm">
+        <label className="text-gray-800 font-semibold" htmlFor="empresa">
           Empresa:
         </label>
         <input
@@ -30,8 +30,8 @@ export const Formulario = ({ cliente }) => {
         />
       </div>
 
-      <div className="mb-4">
-        <label className="text-gray-800" htmlFor="email">
+      <div className="mb-3 text-sm">
+        <label className="text-gray-800 font-semibold" htmlFor="email">
           E-mail:
         </label>
         <input
@@ -44,8 +44,8 @@ export const Formulario = ({ cliente }) => {
         />
       </div>
 
-      <div className="mb-4">
-        <label className="text-gray-800" htmlFor="telefono">
+      <div className="mb-3 text-sm">
+        <label className="text-gray-800 font-semibold" htmlFor="telefono">
           Teléfono:
         </label>
         <input
@@ -58,8 +58,8 @@ export const Formulario = ({ cliente }) => {
         />
       </div>
 
-      <div className="mb-4">
-        <label className="text-gray-800" htmlFor="notas">
+      <div className="mb-3 text-sm">
+        <label className="text-gray-800 font-semibold" htmlFor="notas">
           Notas:
         </label>
         <textarea
@@ -70,6 +70,7 @@ export const Formulario = ({ cliente }) => {
           placeholder="Notas del cliente"
           name="notas"
           defaultValue={cliente?.notas}
+          rows="3"
         />
       </div>
     </>
